@@ -1,0 +1,26 @@
+nav.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light#ftco-navbar
+    div.container
+        a.navbar-brand(href="/") Team LegDay
+        button.navbar-toggler(type="button", data-toggle="collapse", data-target="#ftco-nav", aria-controls="ftco-nav", aria-expanded="false", aria-label="Toggle navigation")
+            span.oi oi-menu Menu
+
+        div.collapse.navbar-collapse#ftco-nav
+            ul.navbar-nav.ml-auto
+                li.nav-item.active: a.nav-link(href='/') Home
+                //li.nav-item: a.nav-link(href='about.html', title='About')
+                //li.nav-item: a.nav-link(href='project.html', title='Project')
+                //li.nav-item: a.nav-link(href='services.html', title='Services')
+                //li.nav-item: a.nav-link(href='team.html', title='Team')
+                li.nav-item: a.nav-link(href='/location') Locations
+                //- if is_center
+                //-     li.nav-item: a.nav-link(href='/member') Member
+                //-     li.nav-item: a.nav-link(href='/instructor') Instructor
+                if nav_show
+                    li.nav-item: a.nav-link(href='/login/logout') Sign Out
+                else
+                    li.nav-item: a.nav-link(href='/login') Sign In                    
+                //if user == undefined
+                //a.p-2.text-dark(href="/users/login") Log In / Register
+                //else
+                //a.p-2.text-dark(href="/dashboard") Dashboard
+                //a.p-2.text-dark(href="/users/logout") Logout

@@ -1,0 +1,101 @@
+extends location
+
+block script
+
+  div.col-lg-8.ftco-animate
+    div.comment-form-wrap
+      h3.mb-5.h4.font-weight-bold Create a post
+      if create_or_edit
+        form.p-5.bg-light(action="/location/create", method="POST", enctype="multipart/form-data")
+          div.form-group
+            label(for="title") Location Nickname
+            if create_or_edit
+              input.form-control#title(type="text", name="title", placeholder="Enter Nickname")
+            else
+              <input class="form-control" id="title" type="text" name="title" placeholder="#{location.name}"/>
+          div.form-group
+            label Author #{author_name}
+          div.form-group
+            label(for="title") Latitude
+            if create_or_edit
+              input.form-control#latitude(type="text", name="latitude", placeholder="Ex. 32.55")
+            else
+              <input class="form-control" id="latitude" type="text" name="latitude" placeholder="#{location.latitude}"/> 
+            label(for="title") Longitude
+            if create_or_edit
+              input.form-control#longitude(type="text", name="longitude", placeholder="Ex. 123.45")
+            else
+              <input class="form-control" id="longitude" type="text" name="longitude" placeholder="#{location.longitude}"/>
+            label(for="title") Altitude
+            if create_or_edit
+              input.form-control#altitude(type="text", name="altitude", placeholder="Ex. 100.23")
+            else
+              <input class="form-control" id="altitude" type="text" name="altitude" placeholder="#{location.altitude}"/>
+            label(for="title") Text
+            if create_or_edit
+              textarea.form-control#text(name="text", placeholder="Enter text you want to display", cols="50", rows="5")
+            else
+              <textarea class="form-control" id="text" name="text" placeholder="#{location.text}" cols="50" rows="5"></textarea>
+            
+          //- label(for="content") Content
+          //- textarea.form-control#content(name="content", placeholder="Write a content", cols="50", rows="20")
+          div.form-group
+            div.post-extra-menu.preview-image
+              //input.upload-name.ml-2(value="파일 선택" disabled="disabled")
+              label.ml-1.btn.py-1.px-4.btn-primary(for="file") Upload file
+              input.upload-hidden#file(type="file",name="upload_file")
+              label.ml-1.btn.py-1.px-4.btn-primary(for="push") Push?
+              input.checkbox-hidden(type="checkbox", name="push")
+          div.form-group
+          if create_or_edit
+            input.btn.ml-1.py-3.px-4.btn-primary(type="submit" value="Register Location")
+          else
+            input.btn.ml-1.py-3.px-4.btn-primary(type="submit" value="Edit Location")
+      else
+        <form class="p-5 bg-light" action="/location/edit?id=#{location._id}" method="POST" enctype="multipart/form-data">
+          div.form-group
+            label(for="title") Location Nickname
+            if create_or_edit
+              input.form-control#title(type="text", name="title", placeholder="Enter Nickname")
+            else
+              <input class="form-control" id="title" type="text" name="title" placeholder="#{location.name}"/>
+          div.form-group
+            label Author #{author_name}
+          div.form-group
+            label(for="title") Latitude
+            if create_or_edit
+              input.form-control#latitude(type="text", name="latitude", placeholder="Ex. 32.55")
+            else
+              <input class="form-control" id="latitude" type="text" name="latitude" placeholder="#{location.latitude}"/> 
+            label(for="title") Longitude
+            if create_or_edit
+              input.form-control#longitude(type="text", name="longitude", placeholder="Ex. 123.45")
+            else
+              <input class="form-control" id="longitude" type="text" name="longitude" placeholder="#{location.longitude}"/>
+            label(for="title") Altitude
+            if create_or_edit
+              input.form-control#altitude(type="text", name="altitude", placeholder="Ex. 100.23")
+            else
+              <input class="form-control" id="altitude" type="text" name="altitude" placeholder="#{location.altitude}"/>
+            label(for="title") Text
+            if create_or_edit
+              textarea.form-control#text(name="text", placeholder="Enter text you want to display", cols="50", rows="5")
+            else
+              <textarea class="form-control" id="text" name="text" placeholder="#{location.text}" cols="50" rows="5"></textarea>
+            
+          //- label(for="content") Content
+          //- textarea.form-control#content(name="content", placeholder="Write a content", cols="50", rows="20")
+          div.form-group
+            div.post-extra-menu.preview-image
+              //input.upload-name.ml-2(value="파일 선택" disabled="disabled")
+              label.ml-1.btn.py-1.px-4.btn-primary(for="file") Upload file
+              input.upload-hidden#file(type="file",name="upload_file")
+              label.ml-1.btn.py-1.px-4.btn-primary(for="push") Push?
+              input.checkbox-hidden(type="checkbox", name="push")
+          div.form-group
+          if create_or_edit
+            input.btn.ml-1.py-3.px-4.btn-primary(type="submit" value="Register Location")
+          else
+            input.btn.ml-1.py-3.px-4.btn-primary(type="submit" value="Edit Location")
+        </form>    
+          

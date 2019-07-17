@@ -1,0 +1,33 @@
+extends location
+
+block script
+
+  div.col-lg-8.ftco-animate
+    div.comment-form-wrap
+      h3.mb-5.h4.font-weight-bold 
+        div.form-group
+          label(for="title") Location Nickname
+            div.form-control#title #{location.name}
+        div.form-group
+          div Author #{author_name}
+        div.form-group
+          label(for="title" style="margin-right:20px;") Latitude
+            div.form-control#latitude #{location.latitude}
+          label(for="title" style="margin-right:20px;") Longitude
+            div.form-control#longitude #{location.longitude}
+          label(for="title" style="margin-right:20px;") Altitude
+            div.form-control#altitude #{location.altitude}
+        div.form-group
+          label(for="title") Text
+            div.form-control#text(cols="100", rows="5" style="width : 365px;") #{location.text}
+          
+          //- label(for="content") Content
+          //- textarea.form-control#content(name="content", placeholder="Write a content", cols="50", rows="20")
+        div.form-group
+        if edit_show
+          <a class="btn-primary ml-1 btn.py-1 px-4" href="/location/edit?id=#{location._id}" name="edit"> Edit Location </a>
+          <a class="btn-primary ml-1 btn.py-1 px-4" href="/location/delete?id=#{location._id}" name="edit"> Delete</a>
+          //-   input.upload-hidden#file(type="file",name="upload_file")
+          //- div.ml-1.btn.py-1.px-4.btn-primary
+          //-   a#edit(href="/location/edit/#{location._id}") Edit Location
+          
