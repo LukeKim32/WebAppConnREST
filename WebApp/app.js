@@ -36,6 +36,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public/'))); // 'public/'을 해주면 layout의 css링크 앞에 /css/~ 를 안붙여도 된다
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+
 //app.use('/',mainRouter);
 app.use('/login', loginRouter);
 app.use('/location', locationRouter);

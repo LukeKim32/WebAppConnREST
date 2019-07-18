@@ -4,8 +4,8 @@ var db= require('../models/mysqlDB');
 var bodyparser = require('body-parser');
 var session = require('express-session');
 var mysql_store = require('express-mysql-session')(session);
-const querystring = require('querystring');
-const http = require('http');
+const fs = require('fs');
+const https = require('https');
 
   router.use(session({
     secret : 'legday key',
@@ -35,16 +35,19 @@ router.post('/',function(req,res){
   });
 
   var options = {
-    host: '54.180.170.132',
+    host: '',
     port: 8080,
     path: '/user/login',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-    }
+    },
+    key : fs.readFileSync(''),
+    cert : fs.readFileSync('')
+  
   };
 
-  var httpreq = http.request(options, function (rest_response) {
+  var httpreq = https.request(options, function (rest_response) {
     var token;
     console.log("Request : ",login_data);
     rest_response.setEncoding('utf8');

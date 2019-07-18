@@ -1,5 +1,6 @@
-const http = require('http');
+const https = require('https');
 const url = require('url');
+const fs = require('fs');
 
 exports.get_all_data = function(req, res) {
   
@@ -11,16 +12,21 @@ exports.get_all_data = function(req, res) {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      key : fs.readFileSync(''),
+    cert : fs.readFileSync('')
     };
-  
-    var httpreq = http.request(options, function (rest_response) {
+    
+
+    var httpreq = https.request(options, function (rest_response) {
       rest_response.setEncoding('utf8');
       rest_response.on('data', function (response_chunk) {
+        
         all_location_data = JSON.parse(response_chunk).location_data;
       });
       
       rest_response.on('end',function(response){
+       
           res.render('location_list',{locations : all_location_data, nav_show : req.session.logged, location_show : req.session.logged, is_center: req.session.logged})
       })
     });
@@ -43,10 +49,12 @@ exports.get_single_detail = function(req, res) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        key : fs.readFileSync(''),
+    cert : fs.readFileSync('')
       };
     
-      var httpreq = http.request(options, function (rest_response) {
+      var httpreq = https.request(options, function (rest_response) {
         rest_response.setEncoding('utf8');
         rest_response.on('data', function (response_chunk) {
           location_data = JSON.parse(response_chunk).location_data;
@@ -74,10 +82,12 @@ exports.what_data_to_edit = function(req, res) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        key : fs.readFileSync(''),
+    cert : fs.readFileSync('')
       };
     
-      var httpreq = http.request(options, function (rest_response) {
+      var httpreq = https.request(options, function (rest_response) {
         rest_response.setEncoding('utf8');
         rest_response.on('data', function (response_chunk) {
           //Print response body
@@ -141,10 +151,12 @@ exports.what_data_to_edit = function(req, res) {
         headers: {
           'Content-Type': 'application/json',
           'Authorization' : 'Bearer '+req.session.token
-        }
+        },
+        key : fs.readFileSync(''),
+    cert : fs.readFileSync('')
       };
     
-      var httpreq = http.request(options, function (rest_response) {
+      var httpreq = https.request(options, function (rest_response) {
         res.writeHead(302, {Location : "/location/detail?id="+locationID});
         res.end();
       });
@@ -191,10 +203,12 @@ exports.what_data_to_edit = function(req, res) {
           headers: {
             'Content-Type': 'application/json',
             'Authorization' : 'Bearer '+req.session.token
-          }
+          },
+          key : fs.readFileSync(''),
+    cert : fs.readFileSync('')
         };
         
-        var httpreq = http.request(options, function (rest_response) {
+        var httpreq = https.request(options, function (rest_response) {
           res.writeHead(302, {Location : "/location"});
           res.end();
         });
@@ -223,10 +237,12 @@ exports.delete_data = function(req,res){
         headers: {
           'Content-Type': 'application/json',
           'Authorization' : 'Bearer '+req.session.token
-        }
+        },
+        key : fs.readFileSync(''),
+    cert : fs.readFileSync('')
       };
     
-      var httpreq = http.request(options, function (rest_response) {
+      var httpreq = https.request(options, function (rest_response) {
         res.writeHead(302, {Location : "/location"});
         res.end();
       });
