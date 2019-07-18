@@ -9,5 +9,7 @@ Whole Structure
 Required additional feature:
  1. MySQL (or else db - for session retain)
  2. Host domain/ip for http request
-
+ 3. key file as using https (openSSL used for mine)
+ 4. Server activation with elevated privileges (ex. root)
+ 
 written in Node.js
