@@ -8,14 +8,14 @@ const fs = require('fs');
 const https = require('https');
 
   router.use(session({
-    secret : 'legday key',
+    secret : process.env.SESSION_SECRET,
     resave : false,
     saveUninitialized : false,
     store : new mysql_store({
       host: 'localhost',
       user : 'root',
-      password : '',
-      database : ''
+      password : process.env.SQL_PW,
+      database : process.env.SQL_DB_NAME
     })
   }));
 router.use(bodyparser.urlencoded({extended:false}));
@@ -35,15 +35,15 @@ router.post('/',function(req,res){
   });
 
   var options = {
-    host: '',
+    host: process.env.IP_OF_REST,
     port: 8080,
     path: '/user/login',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    key : fs.readFileSync(''),
-    cert : fs.readFileSync('')
+    key : fs.readFileSync(process.env.PRIVATE_KEY_PATH),
+    cert : fs.readFileSync(process.env.PUBLIC_KEY_PATH)
   
   };
 

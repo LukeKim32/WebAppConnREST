@@ -6,21 +6,21 @@ var logger = require('morgan');
 var session = require('express-session');
 var mysql_store = require('express-mysql-session')(session);
 var bodyparser = require('body-parser');
-
+require('dotenv').config();
 var loginRouter = require('./routes/login');
 
 var locationRouter = require('./routes/location');
 
 
 app.use(session({ //use session module..
-    secret : 'legday key',
+    secret : process.env.SESSION_SECRET,
     resave : false,
     saveUninitialized : false,
     store : new mysql_store({
       host: 'localhost',
       user : 'root',
-      password : '',
-      database : ''
+      password : process.env.SQL_PW,
+      database : process.env.SQL_DB_NAME
     })
   }));
   

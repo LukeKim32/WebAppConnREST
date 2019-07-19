@@ -6,15 +6,16 @@ exports.get_all_data = function(req, res) {
   
     var all_location_data;
     var options = {
-      host: '',
+      host: process.env.IP_OF_REST,
       port: 8080,
       path: '/locations',
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       },
-      key : fs.readFileSync(''),
-    cert : fs.readFileSync('')
+      key : fs.readFileSync(process.env.PRIVATE_KEY_PATH),
+      cert : fs.readFileSync(process.env.PUBLIC_KEY_PATH)
+  
     };
     
 
@@ -43,15 +44,15 @@ exports.get_single_detail = function(req, res) {
       var location_data;
 
       var options = {
-        host: '',
+        host: process.env.IP_OF_REST,
         port: 8080,
         path: '/locations/'+locationID,
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
-        key : fs.readFileSync(''),
-    cert : fs.readFileSync('')
+        key : fs.readFileSync(process.env.PRIVATE_KEY_PATH),
+        cert : fs.readFileSync(process.env.PUBLIC_KEY_PATH)
       };
     
       var httpreq = https.request(options, function (rest_response) {
@@ -76,15 +77,15 @@ exports.what_data_to_edit = function(req, res) {
       var location_data;
   
       var options = {
-        host: '',
+        host: process.env.IP_OF_REST,
         port: 8080,
         path: '/locations/'+locationID,
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
-        key : fs.readFileSync(''),
-    cert : fs.readFileSync('')
+        key : fs.readFileSync(process.env.PRIVATE_KEY_PATH),
+        cert : fs.readFileSync(process.env.PUBLIC_KEY_PATH)
       };
     
       var httpreq = https.request(options, function (rest_response) {
@@ -144,7 +145,7 @@ exports.what_data_to_edit = function(req, res) {
       edit_location_data = JSON.stringify(edit_location_data);
   
       var options = {
-        host: '',
+        host: process.env.IP_OF_REST,
         port: 8080,
         path: '/locations/'+locationID,
         method: 'PUT',
@@ -152,8 +153,8 @@ exports.what_data_to_edit = function(req, res) {
           'Content-Type': 'application/json',
           'Authorization' : 'Bearer '+req.session.token
         },
-        key : fs.readFileSync(''),
-    cert : fs.readFileSync('')
+        key : fs.readFileSync(process.env.PRIVATE_KEY_PATH),
+        cert : fs.readFileSync(process.env.PUBLIC_KEY_PATH)
       };
     
       var httpreq = https.request(options, function (rest_response) {
@@ -196,7 +197,7 @@ exports.what_data_to_edit = function(req, res) {
         });
         
         var options = {
-          host: '',
+          host: process.env.IP_OF_REST,
           port: 8080,
           path: '/locations',
           method: 'POST',
@@ -204,8 +205,8 @@ exports.what_data_to_edit = function(req, res) {
             'Content-Type': 'application/json',
             'Authorization' : 'Bearer '+req.session.token
           },
-          key : fs.readFileSync(''),
-    cert : fs.readFileSync('')
+          key : fs.readFileSync(process.env.PRIVATE_KEY_PATH),
+          cert : fs.readFileSync(process.env.PUBLIC_KEY_PATH)
         };
         
         var httpreq = https.request(options, function (rest_response) {
@@ -230,7 +231,7 @@ exports.delete_data = function(req,res){
       var locationID = queryData.id;
   
       var options = {
-        host: '',
+        host: process.env.IP_OF_REST,
         port: 8080,
         path: '/locations/'+locationID,
         method: 'DELETE',
@@ -238,8 +239,8 @@ exports.delete_data = function(req,res){
           'Content-Type': 'application/json',
           'Authorization' : 'Bearer '+req.session.token
         },
-        key : fs.readFileSync(''),
-    cert : fs.readFileSync('')
+        key : fs.readFileSync(process.env.PRIVATE_KEY_PATH),
+        cert : fs.readFileSync(process.env.PUBLIC_KEY_PATH)
       };
     
       var httpreq = https.request(options, function (rest_response) {
