@@ -22,6 +22,8 @@ app.set('port', port);
 var options = {
   key : fs.readFileSync(process.env.PRIVATE_KEY_PATH),
   cert : fs.readFileSync(process.env.PUBLIC_KEY_PATH)
+   // key: fs.readFileSync('/home/ubuntu/ssl_key/rest_api_key.pem'),
+    //cert: fs.readFileSync('/home/ubuntu/ssl_key/rest_api_cert.pem')
 }
 var server = https.createServer(options,app);
 
